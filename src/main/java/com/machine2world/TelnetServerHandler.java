@@ -18,7 +18,7 @@ public class TelnetServerHandler extends IoHandlerAdapter {
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		String messageText = message.toString();
-		if (messageText == "quit"){
+		if (messageText.equals("quit")){
 			session.close(false);
 			return;
 		}
