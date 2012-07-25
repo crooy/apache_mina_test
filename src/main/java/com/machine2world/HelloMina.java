@@ -32,8 +32,9 @@ public class HelloMina implements Runnable {
     /**
      * @param args the command line arguments
      * @throws IOException 
+     * @throws InterruptedException 
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
     	 PropertyConfigurator.configure("log4j.properties");
     	
     	 HelloMina helloMinaServer  = new HelloMina(6666);
@@ -57,7 +58,7 @@ public class HelloMina implements Runnable {
          
          acceptor.bind( new InetSocketAddress(port));
          
-         Thread.sleep(100);
+         Thread.sleep(1000);
          
 	}
 	
