@@ -32,14 +32,29 @@ public class HelloMina {
     public static void main(String[] args) throws IOException {
     	 PropertyConfigurator.configure("log4j.properties");
     	
-    	 IoAcceptor acceptor = new NioSocketAcceptor();
+    	 HelloMina helloMinaServer  = new HelloMina(6666);
+    	 helloMinaServer.start();
+         
+        
+    }
+
+    private int port;
+	private IoAcceptor acceptor;
+    public HelloMina(int port){
+    	this.port = port;
+    }
+    
+	public void start() throws IOException {
+		 acceptor = new NioSocketAcceptor();
     	 acceptor.getFilterChain().addLast( "logger", new LoggingFilter() );
          acceptor.getFilterChain().addLast( "codec", new ProtocolCodecFilter( new TextLineCodecFactory( Charset.forName( "UTF-8" ))));
          
          acceptor.setHandler(new TelnetServerHandler());
          
-         acceptor.bind( new InetSocketAddress(6666));
-         
-         
-    }
+         acceptor.bind( new InetSocketAddress(port));
+	}
+	public void stop(){
+		acceptor.unbind();
+	}
+	
 }
