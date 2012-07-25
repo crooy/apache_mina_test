@@ -18,12 +18,15 @@ public class TelnetServerHandler extends IoHandlerAdapter {
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		String messageText = message.toString();
+		session.write(messageText);
+		logger.debug("received message '{}'",messageText);		
+		
 		if (messageText.equals("quit")){
 			session.close(false);
+			
 			return;
 		}
-		session.write(messageText);
-		logger.debug("received message '{}'",messageText);
+			 	
 		
 	}
 

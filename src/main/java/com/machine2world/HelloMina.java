@@ -52,7 +52,8 @@ public class HelloMina implements Runnable {
 	private void start() throws IOException, InterruptedException {
 		 acceptor = new NioSocketAcceptor();
     	 acceptor.getFilterChain().addLast( "logger", new LoggingFilter() );
-         acceptor.getFilterChain().addLast( "codec", new ProtocolCodecFilter( new TextLineCodecFactory( Charset.forName( "UTF-8" ))));
+         acceptor.getFilterChain().addLast( "codec", new ProtocolCodecFilter( new TextLineCodecFactory( Charset.forName("UTF-8") )));
+         
          
          acceptor.setHandler(new TelnetServerHandler());
          

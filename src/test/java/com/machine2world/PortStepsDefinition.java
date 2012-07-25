@@ -3,6 +3,8 @@ package com.machine2world;
 import static junit.framework.Assert.*;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
@@ -27,7 +29,7 @@ public class PortStepsDefinition {
 	}
 
 	private static HelloMina minaServer;
-	private TelnetClient client;
+	private AutomatedTelnetClient client;
 
 	
 	
@@ -37,18 +39,34 @@ public class PortStepsDefinition {
 		minaServer.run();
 	}
 	
+	@Given("a telnet connection")
+	public void ConnectedTelnet(){
+		ConnectTelnetClient();
+	}	
+	
 	@When("a telnet client connects")
 	public void ConnectTelnetClient(){
-		client = new TelnetClient();
+		
 		try{
-			client.connect("localhost",6666);
+			client = new AutomatedTelnetClient("localhost",6666);
 		}catch(Exception e){			
 			fail("unable to connect: "+e.getMessage());
 		}
+	}
+	
+	@When("the '(.+)' command is given")
+	public void GiveCommand(String command) throws Exception, IOException{	
+		assertTrue(client.sendCommand(command));
 	}
 	
 	@Then("the connection should be accepted")
 	public void TheConnectionShouldBeAccepted(){
 		assertTrue(client.isConnected());
 	}
+	
+	@Then("the connection is closed")
+	public void TheConnectionIsClosed() throws InterruptedException{
+		assertFalse(client.sendCommand("test"));
+	}
+
 }
