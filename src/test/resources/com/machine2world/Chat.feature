@@ -14,7 +14,7 @@ Scenario: only one connection is closed when quit is given
 	And a telnet connection 1
 	And a telnet connection 2
 	When the 'quit' command is given by connection 1
-	Then the the connection of client 1 is closed
+	Then the connection of client 1 is closed
 	And the connection of client 2 is open
 	
 Scenario: The text from client 1 is sent to all clients

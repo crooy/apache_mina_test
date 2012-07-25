@@ -60,9 +60,13 @@ public class ChatStepDefinition {
 		assertTrue(clients.get(index).isConnected());
 	}
 	
-	@Then("the connection of client (\\+) is closed")
+	@Then("the connection of client (\\d+) is closed")
 	public void TheConnectionIsClosed(int index) throws InterruptedException{
 		assertFalse(clients.get(index).sendCommand("test"));
 	}
-
+	@Then("^connection (\\d+) receives 'Hello'$")
+	public void connection_receives_Hello(int arg1) throws Throwable {
+	    // Express the Regexp above with the code you wish you had
+	    throw new PendingException();
+	}
 }
