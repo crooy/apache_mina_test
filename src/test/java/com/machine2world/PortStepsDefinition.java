@@ -1,4 +1,4 @@
-package hellomina;
+package com.machine2world;
 
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;

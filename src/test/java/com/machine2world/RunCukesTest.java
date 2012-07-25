@@ -1,4 +1,4 @@
-package hellomina;
+package com.machine2world;
 
 import cucumber.junit.Cucumber;
 import org.junit.runner.RunWith;
