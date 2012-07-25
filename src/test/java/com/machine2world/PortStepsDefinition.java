@@ -33,7 +33,7 @@ public class PortStepsDefinition {
 
 	
 	
-	@Given("a HelloMina server")
+	@Given("a simple HelloMina server")
 	public void StartHelloMina() throws IOException{
 		minaServer = new HelloMina(6666);
 		minaServer.run();
