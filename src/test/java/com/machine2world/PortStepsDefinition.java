@@ -22,8 +22,7 @@ public class PortStepsDefinition {
 	}
 	
 	@Override
-	protected void finalize() throws Throwable {
-		minaServer.stop();
+	protected void finalize() throws Throwable {		
 		super.finalize();
 	}
 
@@ -35,7 +34,7 @@ public class PortStepsDefinition {
 	@Given("a HelloMina server")
 	public void StartHelloMina() throws IOException{
 		minaServer = new HelloMina(6666);
-		minaServer.start();
+		minaServer.run();
 	}
 	
 	@When("a telnet client connects")
