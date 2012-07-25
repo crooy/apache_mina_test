@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.apache.mina.core.service.IoAcceptor;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
@@ -29,6 +30,8 @@ public class HelloMina {
      * @throws IOException 
      */
     public static void main(String[] args) throws IOException {
+    	 PropertyConfigurator.configure("log4j.properties");
+    	
     	 IoAcceptor acceptor = new NioSocketAcceptor();
     	 acceptor.getFilterChain().addLast( "logger", new LoggingFilter() );
          acceptor.getFilterChain().addLast( "codec", new ProtocolCodecFilter( new TextLineCodecFactory( Charset.forName( "UTF-8" ))));
